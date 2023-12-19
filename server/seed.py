@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 #server/seed.py
-
+from random import choice as rc
+from faker import Faker
 from app import app
 from models import db, Pet
 
 with app.app_context():
+
+    fake = Faker()
+    Pet.query.delete()
 
     # Create an empty list
     pets = []
@@ -13,6 +17,7 @@ with app.app_context():
     pets.append(Pet(name = "Fido", species = "Dog"))
     pets.append(Pet(name = "Whiskers", species = "Cat"))
     pets.append(Pet(name = "Hermie", species = "Hamster"))
+    pets.append(Pet(name = "Slither", species = "Snake"))
 
     # Insert each Pet in the list into the database table
     db.session.add_all(pets)
